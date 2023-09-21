@@ -1,0 +1,54 @@
+{
+  "description": "Diagrama de dispersión de la recaudación bruta en Estados Unidos frente a la recaudación bruta mundial de películas",
+  "width": 600,
+  "height": 300,
+  "padding": 10,
+  "data": {
+    "url": "https://raw.githubusercontent.com/vega/vega-datasets/next/data/movies.json"
+  },
+  "transform": [
+    {
+      "type": "filter",
+      "expr": "datum['US Gross'] != null && datum['Worldwide Gross'] != null"
+    }
+  ],
+  "params": [
+    {
+      "name": "opacity",
+      "value": 50,
+      "bind": {
+        "input": "range",
+        "min": 1,
+        "max": 100
+      }
+    },
+    {
+      "name": "sel",
+      "select": {
+        "type": "point",
+        "fields": [
+          "US Gross"
+        ],
+        "toggle": false
+      }
+    }
+  ],
+  "mark": {
+    "type": "circle",
+    "opacity": {
+      "expr": "opacity/100"
+    }
+  },
+  "encoding": {
+    "x": {
+      "field": "US Gross",
+      "type": "quantitative",
+      "title": "Recaudación en Estados Unidos"
+    },
+    "y": {
+      "field": "Worldwide Gross",
+      "type": "quantitative",
+      "title": "Recaudación mundial"
+    }
+  }
+}

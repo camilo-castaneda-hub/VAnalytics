@@ -1,0 +1,34 @@
+{
+    "height": 300,
+    "width": 400,
+    "description": "distribución de películas por género principal",
+    "data": {
+        "url": "https://raw.githubusercontent.com/vega/vega-datasets/next/data/movies.json",
+        "transform": [
+            {
+                "type": "filter",
+                "predicate": {
+                    "field": "Major Genre",
+                    "not": {
+                        "type": "isnull"
+                    }
+                }
+            }
+        ]
+    },
+    "mark": {
+        "type": "arc",
+        "innerRadius": 50,
+        "tooltip": true
+    },
+    "encoding": {
+        "theta": {
+            "aggregate": "count",
+            "type": "quantitative"
+        },
+        "color": {
+            "field": "Major Genre",
+            "type": "nominal"
+        }
+    }
+}

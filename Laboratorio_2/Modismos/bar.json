@@ -1,0 +1,22 @@
+{
+    "description": "Distribución de películas por calificación de IMDb",
+    "width": 600,
+    "height": 300,
+    "data": {
+        "url": "https://raw.githubusercontent.com/vega/vega-datasets/next/data/movies.json"
+    },
+    "mark": "bar",
+    "encoding": {
+        "x": {
+            "bin": true,
+            "field": "IMDB Rating",
+            "type": "quantitative",
+            "title": "Calificación de películas de IMDb"
+        },
+        "y": {
+            "aggregate": "count",
+            "type": "quantitative",
+            "title": "Cantidad de películas"
+        }
+    }
+}

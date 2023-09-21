@@ -1,0 +1,76 @@
+{
+    "description": "Evolución de la recaudación bruta en Estados Unidos de las películas a lo largo del tiempo, la regla es la media de la recaudación y seleccionador de intervalo",
+    "data": {
+        "url": "https://raw.githubusercontent.com/vega/vega-datasets/next/data/movies.json"
+    },
+    "vconcat": [
+        {
+            "width": 600,
+            "height": 300,
+            "mark": "line",
+            "encoding": {
+                "x": {
+                    "field": "Release Date",
+                    "type": "temporal",
+                    "scale": {
+                        "domain": {
+                            "param": "brush"
+                        }
+                    },
+                    "axis": {
+                        "title": "Fecha de estreno por intervalo"
+                    }
+                },
+                "y": {
+                    "field": "US Gross",
+                    "type": "quantitative",
+                    "title": "Recaudo de taquilla en Estados Unidos"
+                }
+            }
+        },
+        {
+            "width": 600,
+            "height": 200,
+            "layer": [
+                {
+                    "mark": "line",
+                    "params": [
+                        {
+                            "name": "brush",
+                            "select": {
+                                "type": "interval",
+                                "encodings": [
+                                    "x"
+                                ]
+                            }
+                        }
+                    ],
+                    "encoding": {
+                        "x": {
+                            "field": "Release Date",
+                            "type": "temporal",
+                            "title": "Fecha de estreno"
+                        },
+                        "y": {
+                            "field": "US Gross",
+                            "type": "quantitative",
+                            "title": "Recaudo de taquilla en Estados Unidos"
+                        }
+                    }
+                },
+                {
+                    "mark": "rule",
+                    "encoding": {
+                        "y": {
+                            "field": "US Gross",
+                            "aggregate": "mean"
+                        },
+                        "size": {
+                            "value": 2
+                        }
+                    }
+                }
+            ]
+        }
+    ]
+}
